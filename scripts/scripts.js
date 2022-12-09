@@ -9,11 +9,9 @@ You are encouraged to use the provided naming convention for ease of review.
 /****************** create variables ******************/
 /* create variables to hold the values for modelName and duration */
 
-var modelName = document.getElementById("modelText").innerHTML;
-var duration = document.getElementById("calculatedCost").innerHTML;
+var modelName = document.getElementById("modelText");
+var duration = document.getElementById("durationText").innerHTML;
 
-console.log(modelName);
-console.log(duration);
 
 
 /****************** helper function ******************/
@@ -25,23 +23,16 @@ console.log(duration);
         if modelName is currently "CPRG", duration * 213 gives us the new total cost.
     - set the value of the calculated-cost element's innerHTML to this new value
 */
-
+// issue: when model switches, and new duration is added, it does not recalculate accrately -resolved
 function recalculate(){
     let calculatedCost = document.getElementById("calculatedCost");
-
-    if(modelName === "Model XYZ"){
+    if(modelName.innerHTML === "Model XYZ"){
         var newTotalCost = duration*100;
-    }else if(modelName === "Model CPRG"){
+    }else{
         var newTotalCost = duration*213;
-    }else{}
-
+    }
     calculatedCost.innerHTML = newTotalCost;
 }
-
-
-
-
-
 
 
 /****************** model button logic ******************/
@@ -67,8 +58,8 @@ function changeModel(){
         modelText.innerHTML = "Model XYZ";
     }
     recalculate();
-}
-
+    }
+    
 modelButton.addEventListener("click", changeModel);
 
 
@@ -91,10 +82,8 @@ var durationButton = document.getElementById("durationButton");
 function changeDuration(){
     let durationText = document.getElementById("durationText");
     duration = prompt("Enter a new duration: ");
-    recalculate()
     durationText.innerHTML = duration;
-    //recalculate();
+    recalculate();
 }
-// issue: when model switches, and new duration is added, it does not recalculate accrately
 durationButton.addEventListener("click", changeDuration);
 
