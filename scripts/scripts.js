@@ -26,10 +26,11 @@ var duration = document.getElementById("durationText").innerHTML;
 // issue: when model switches, and new duration is added, it does not recalculate accrately -resolved
 function recalculate(){
     let calculatedCost = document.getElementById("calculatedCost");
+    var newTotalCost;
     if(modelName.innerHTML === "Model XYZ"){
-        var newTotalCost = duration*100;
+        newTotalCost = duration*100;
     }else{
-        var newTotalCost = duration*213;
+        newTotalCost = duration*213;
     }
     calculatedCost.innerHTML = newTotalCost;
 }
